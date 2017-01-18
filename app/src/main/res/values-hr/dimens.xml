@@ -1,0 +1,7 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="standard">16dp</dimen>
+    <dimen name="image_layout_height">180dp</dimen>
+    <dimen name="image2_layout_height">80dp</dimen>
+    <dimen name="icon_margin">5dp</dimen>
+</resources>

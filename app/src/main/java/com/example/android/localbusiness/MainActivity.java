@@ -4,17 +4,16 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
-
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-
 
 
 
@@ -73,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
         client.disconnect();
     }
 
-
     public void MapMethod(View view) {
         Uri gmmIntentUri = Uri.parse("google.navigation:q=45.2889922,18.7978083&mode=d");
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
@@ -81,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
         if (mapIntent.resolveActivity(getPackageManager()) != null) {
             startActivity(mapIntent);
         }
-
     }
 
     public void makeCall(View view) {
@@ -101,17 +97,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sendEmail(View view) {
-            Intent email = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                    "mailto", "bagatelladoo@gmail.com", null));
-            email.putExtra(Intent.EXTRA_SUBJECT, "Upit");
-            startActivity(Intent.createChooser(email, "Izaberite Email klijenta :"));
-        }
+        Intent email = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto", "bagatelladoo@gmail.com", null));
+        email.putExtra(Intent.EXTRA_SUBJECT, "Upit");
+        startActivity(Intent.createChooser(email, "Izaberite Email klijenta :"));
+    }
 
     public void goToUrl(View view) {
         Uri uriUrl = Uri.parse("http://www.companywall.hr/bagatella-doo/review/servis-motornih-pila-stihl-vinkovci/d-2339");
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
         startActivity(launchBrowser);
     }
+
 }
 
 
