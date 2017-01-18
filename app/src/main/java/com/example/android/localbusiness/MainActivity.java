@@ -1,27 +1,44 @@
 package com.example.android.localbusiness;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.util.Locale;
+
 
 public class MainActivity extends AppCompatActivity {
+
+    Locale myLocale;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+
+    ImageView image;
+    Dialog chooseDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +49,63 @@ public class MainActivity extends AppCompatActivity {
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
 
+        image = (ImageView) findViewById(R.id.spinner);
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chooseDialog = new Dialog(MainActivity.this);
+                View dialogView = getLayoutInflater().inflate(R.layout.dialog_host, null);
+                String[] items = new String[]{"Hrvatski", "English"};
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1,
+                        android.R.id.text1, items);
+                ListView listView = (ListView) dialogView.findViewById(R.id.list_view);
+                listView.setAdapter(adapter);
+                chooseDialog.setTitle("Izaberi jezik");
+                chooseDialog.setContentView(dialogView);
+
+                chooseDialog.show();
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Log.v("item", (String) parent.getItemAtPosition(position));
+                        if (1 == position) {
+                            image.setBackgroundResource(R.drawable.united_states_of_america_round_icon_256);
+                            Toast.makeText(parent.getContext(),
+                                    "You have selected English", Toast.LENGTH_SHORT)
+                                    .show();
+                            setLocale("en");
+                            chooseDialog.dismiss();
+                        } else if (0 == position) {
+                            image.setBackgroundResource(R.drawable.croatia_round_icon_256);
+                            Toast.makeText(parent.getContext(),
+                                    "Odabrali ste Hrvatski", Toast.LENGTH_SHORT)
+                                    .show();
+                            setLocale("hr");
+                            chooseDialog.dismiss();
+                        }
+                    }
+
+                });
+            }
+        });
 
     }
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
+    @SuppressWarnings("deprecation")
+    public void setLocale(String lang) {
+
+        myLocale = new Locale(lang);
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration config = res.getConfiguration();
+        config.locale = myLocale;
+        res.updateConfiguration(config, dm);
+        finish();
+        startActivity(getIntent());
+    }
+
     public Action getIndexApiAction() {
         Thing object = new Thing.Builder()
                 .setName("Main Page") // TODO: Define a title for the content shown.
@@ -106,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
     public void goToUrl(View view) {
         Uri uriUrl = Uri.parse("http://www.companywall.hr/bagatella-doo/review/servis-motornih-pila-stihl-vinkovci/d-2339");
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
-        startActivity(launchBrowser);
+        startActivity(Intent.createChooser(launchBrowser, "Izaberite preglednik :"));
     }
 
 }
