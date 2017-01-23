@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
 
-        image = (ImageView) findViewById(R.id.spinner);
+        image = (ImageView) findViewById(R.id.dialogs);
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,14 +71,12 @@ public class MainActivity extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Log.v("item", (String) parent.getItemAtPosition(position));
                         if (1 == position) {
-                            image.setBackgroundResource(R.drawable.united_states_of_america_round_icon_256);
                             Toast.makeText(parent.getContext(),
                                     "You have selected English", Toast.LENGTH_SHORT)
                                     .show();
                             setLocale("en");
                             chooseDialog.dismiss();
                         } else if (0 == position) {
-                            image.setBackgroundResource(R.drawable.croatia_round_icon_256);
                             Toast.makeText(parent.getContext(),
                                     "Odabrali ste Hrvatski", Toast.LENGTH_SHORT)
                                     .show();
@@ -160,20 +158,20 @@ public class MainActivity extends AppCompatActivity {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        startActivity(Intent.createChooser(callIntent, "Izaberite klijenta :"));
+        startActivity(Intent.createChooser(callIntent, getString(R.string.call)));
     }
 
     public void sendEmail(View view) {
         Intent email = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                 "mailto", "bagatelladoo@gmail.com", null));
-        email.putExtra(Intent.EXTRA_SUBJECT, "Upit");
-        startActivity(Intent.createChooser(email, "Izaberite Email klijenta :"));
+        email.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.upit));
+        startActivity(Intent.createChooser(email, getString(R.string.send)));
     }
 
     public void goToUrl(View view) {
         Uri uriUrl = Uri.parse("http://www.companywall.hr/bagatella-doo/review/servis-motornih-pila-stihl-vinkovci/d-2339");
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
-        startActivity(Intent.createChooser(launchBrowser, "Izaberite preglednik :"));
+        startActivity(Intent.createChooser(launchBrowser, getString(R.string.url)));
     }
 
 }

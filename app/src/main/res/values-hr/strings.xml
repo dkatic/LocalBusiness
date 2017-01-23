@@ -1,10 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">STIHL</string>
-    <string name="text">BAGATELLA d.o.o. Vinkovci</string>
-    <string name="location">Duga ulica 61, 32100 Vinkovci</string>
-    <string name="phone">032/334-473</string>
-    <string name="mail">bagatelladoo@gmail.com</string>
-    <string name="time">Pon-Pet 08-19h / Sub 08-13h</string>
+    <string name="time">Pon–Pet 08–19h / Sub 08–13h</string>
     <string name="about">Prodaja STIHL i VIKING uređaja. Vršimo usluge servisiranja morotnih uređaja te skraćivanje i oštrenje lanaca za motorne pile.\n\nPošaljite upit na mail ili nas nazovite!</string>
+    <string name="url">Izaberite preglednik :</string>
+    <string name="send">Izaberite Email klijenta :</string>
+    <string name="call">Izaberite klijenta :</string>
+    <string name="upit">Upit</string>
 
 </resources>
