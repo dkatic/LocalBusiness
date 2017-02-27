@@ -2,9 +2,9 @@
 <resources>
     <string name="time">Mon–Fri 08–19h / Sat 08–13h</string>
     <string name="about">Sales STIHL and VIKING devices. We offer servicing motor device, shortening and sharpening chains for chain saws.\n\nSend your request to mail or call us!</string>
-    <string name="url">Choose Browser :</string>
-    <string name="send">Choose Email Client :</string>
-    <string name="call">Select Client :</string>
+    <string name="url">Complete action using</string>
+    <string name="send">Complete action using</string>
+    <string name="call">Complete action using</string>
     <string name="upit">Enquiry</string>
 
 </resources>

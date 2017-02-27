@@ -2,9 +2,9 @@
 <resources>
     <string name="time">Pon–Pet 08–19h / Sub 08–13h</string>
     <string name="about">Prodaja STIHL i VIKING uređaja. Vršimo usluge servisiranja morotnih uređaja te skraćivanje i oštrenje lanaca za motorne pile.\n\nPošaljite upit na mail ili nas nazovite!</string>
-    <string name="url">Izaberite preglednik :</string>
-    <string name="send">Izaberite Email klijenta :</string>
-    <string name="call">Izaberite klijenta :</string>
+    <string name="url">Korištenje</string>
+    <string name="send">Korištenje</string>
+    <string name="call">Korištenje</string>
     <string name="upit">Upit</string>
 
 </resources>

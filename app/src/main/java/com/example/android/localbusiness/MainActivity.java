@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
                         android.R.id.text1, items);
                 ListView listView = (ListView) dialogView.findViewById(R.id.list_view);
                 listView.setAdapter(adapter);
-                chooseDialog.setTitle("Izaberi jezik");
                 chooseDialog.setContentView(dialogView);
 
                 chooseDialog.show();
@@ -175,5 +174,3 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-
-
