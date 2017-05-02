@@ -26,7 +26,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.Locale;
 
-
 public class MainActivity extends AppCompatActivity {
 
     Locale myLocale;
@@ -48,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
-
+        // Dialog
         image = (ImageView) findViewById(R.id.dialogs);
         image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
                 ListView listView = (ListView) dialogView.findViewById(R.id.list_view);
                 listView.setAdapter(adapter);
                 chooseDialog.setContentView(dialogView);
-
                 chooseDialog.show();
 
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -83,11 +81,9 @@ public class MainActivity extends AppCompatActivity {
                             chooseDialog.dismiss();
                         }
                     }
-
                 });
             }
         });
-
     }
 
     @SuppressWarnings("deprecation")
@@ -135,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
         client.disconnect();
     }
 
+    // Map Method
     public void MapMethod(View view) {
         Uri gmmIntentUri = Uri.parse("google.navigation:q=45.2889922,18.7978083&mode=d");
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
@@ -144,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Call
     public void makeCall(View view) {
         Intent callIntent = new Intent(Intent.ACTION_DIAL);
         callIntent.setData(Uri.parse("tel:032334473"));
@@ -160,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(Intent.createChooser(callIntent, getString(R.string.call)));
     }
 
+    // Email
     public void sendEmail(View view) {
         Intent email = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                 "mailto", "bagatelladoo@gmail.com", null));
@@ -167,10 +166,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(Intent.createChooser(email, getString(R.string.send)));
     }
 
+    // Browser
     public void goToUrl(View view) {
         Uri uriUrl = Uri.parse("http://www.companywall.hr/bagatella-doo/review/servis-motornih-pila-stihl-vinkovci/d-2339");
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
         startActivity(Intent.createChooser(launchBrowser, getString(R.string.url)));
     }
-
 }
